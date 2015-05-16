@@ -11,7 +11,7 @@ myApp.controller("myCtrl",['$scope','$http',function($scope,$http){
         $scope.showModal = !$scope.showModal;
     };
     
-$http.get('data.json').
+$http.get('data/data.json').
   success(function(data, status, headers, config) {
     $scope.data=data.orders;
     console.log(data);
