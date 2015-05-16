@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>trello</title>
+
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+     
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+   
+ 
+    <script type="text/javascript"src="angular-drag-and-drop-lists.min.js"></script>
+    <script src="main.js"></script> 
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+ <body ng-app="myApp" ng-controller="myCtrl">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              <h1 class="panel-title ng-binding" style="text-align: center;font-size: 36px!important;"> Delivery Staus </h1>
+          </div>
+      </div>
+
+      <div ng-repeat="list in data" class="col-md-6 ng-scope simpleDemo">
+          <div class="panel panel-info ">
+              <div class="panel-heading">
+                  <h3 class="panel-title ng-binding" > {{list.deliveryboy}}</h3>
+              </div>
+              
+              <ul dnd-list="list.orders">
+     <li ng-repeat="item in list.orders| orderBy:'priority'"
+        dnd-draggable="item"
+        dnd-moved="list.orders.splice($index, 1)"
+        dnd-effect-allowed="move"
+        dnd-selected="models.selected = item"
+        ng-class="{'selected': models.selected === item}"
+        >
+        <strong>OrderId</strong> {{item.orderId}}   <strong>Location</strong>        {{item.location}}   <strong>Priority</strong>  {{$index+1}}  
+        <button ng-click="toggleModal(item.orderId)" style="float: right;background: #bce8f1;">+</button>
+    </li>
+</ul></div></div>
+         
+          <modal title="Order Details" visible="showModal">
+      <ul>
+          <li><strong> Order Id </strong> :  </li>  
+          <li><strong> Delivery address </strong>   :           </li>
+          <li> <strong>Delivery boy  </strong>: </li>
+      </ul>
+         </modal>
+                        
+                        
+                        
+</body>
+</html>
+
