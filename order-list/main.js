@@ -19,6 +19,7 @@ $http.get('data.json').
     // when the response is available
   }).
   error(function(data, status, headers, config) {
+     alert('Failed to get order data');
     // called asynchronously if an error occurs
     // or server returns response with an error status.
   });
